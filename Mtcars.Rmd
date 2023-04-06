@@ -1,0 +1,105 @@
+---
+title: "Motor Trend Car Road Tests"
+author: "Created by: Hector Alan Gutierrez Galvez"
+date: "2023-04-05"
+output: html_document
+---
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+```{r, warning=FALSE}
+mtcars <- read.csv("C:/Users/alang/Documents/Cursos/Fundamentos de R/mtcars.csv")
+data(mtcars)
+mtcars
+summary(mtcars)
+```
+```{r, warning=FALSE}
+plot(mtcars$mpg ~ mtcars$cyl,
+     xlab= "cilindros", ylab = "millas por galon",
+     main= "Relacion cilindro y millas por galon")
+
+plot(mtcars$mpg ~ mtcars$hp,
+     xlab= "caballos de fuerza ", ylab = "millas por galon",
+     main= "Relacion caballos de fuerza y millas por galon")
+```
+```{r, warning=FALSE}
+hist(mtcars$hp,
+      geom="histogram",
+      xlab="caballos de fuerza",
+      main = " Carros segun caballos de fuerza")
+```
+```{r, warning=FALSE}
+#BOXPLOTS
+boxplot(mtcars$hp,
+        ylab="Caballos de fuerza",
+        main="Caballos de fuerza en carros mtcars")
+```
+```{r}
+library(ggplot2)
+```
+
+```{r, warning=FALSE}
+#-------------------------------------------------------------------
+#Se toma como etiqueta o factor
+ggplot(mtcars, aes(x=as.factor(cyl), y=hp, fill=cyl))+
+  geom_boxplot(alpha=0.6)+
+  labs(x="cilindros", y= "caballos de fuerza",
+       tittle = "Caballos de fuerza segun cilindros en mtcars")+
+  theme(legend.position = "none")+
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+```{r, warning=FALSE}
+ggplot(mtcars, aes(hp, mpg))+
+  geom_point()+
+  labs(x="caballos de fuerza", y= "millas por galon",
+       tittle = "Relacion caballos de fuerza y millas por galon")
+theme(legend.position = "none")+
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+```
+```{r, warning=FALSE}
+ggplot(mtcars, aes(wt, hp))+
+  geom_point()+
+  labs(x="peso", y= "potencia",
+       tittle = "Relacion peso-potencia")
+theme(legend.position = "none")+
+  theme(panel.background = element_blank(), 
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+```
+```{r, warning=FALSE}
+
+
+pairs(mtcars[, -c(1,3,4,5,6,9,10)])
+```
+```{r, warning=FALSE}
+sd(mtcars$mpg)
+desv <- sd(mtcars$mpg)
+mean(mtcars$mpg)
+
+```
+```{r, warning=FALSE}
+prom <- mean(mtcars$mpg)
+prom
+
+#coeficiente
+CoefVar <- (desv/prom)*100
+CoefVar
+
+```
+```{r, warning=FALSE}
+Mas_veloces <- mtcars[mtcars$qsec<16,]
+Mas_veloces
+```
+
+
+![](Rplot03.png){witdh=1000%}
+
+
+
+
+
+
+

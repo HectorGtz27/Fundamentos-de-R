@@ -1,0 +1,78 @@
+---
+title: "Orange Economy"
+author: "Created by: Hector Alan Gutierrez Galvez"
+date: "2023-04-05"
+output: html_document
+---
+
+```{r, warning=FALSE}
+orangeec <- read.csv("C:/Users/alang/Documents/Cursos/Fundamentos de R/orangeec.csv")
+data(orangeec)
+orangeec
+summary(orangeec)
+```
+
+Parece que hay correlacion entre aporte de economia naranja al pib y la tasa de desempleo
+
+```{r, warning=FALSE}
+pairs(orangeec[,6:10])
+```
+
+```{r, warning=FALSE}
+library(ggplot2)
+```
+
+
+
+```{r}
+ggplot()+geom_histogram(data=orangeec,
+                        aes(x=Internet.penetration...population),fill='red',color='yellow',
+                        binwidth=5)+
+  labs(x="Penetracion internet(%)pobllacion", y="Cantidad de paises",
+       title="Penetracion de internet en paises latam")+
+  theme(legend.position = 'none')+
+  theme(panel.background = element_blank(),panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+```
+
+```{r}
+library(dplyr)
+```
+
+
+
+
+ggplot(orangeec,aes(x=Strong_economy,y=Creat.Ind...GDP, fill=Strong_economy))+
+  geom_boxplot(alpha = 0.4)+
+  labs(x='Tipo de país',
+       y='Aporte economia naranja al PIB',
+       title = 'Aporte economia naranja al PIB paises latam con alto y bajo PIB per capita')+
+  theme(legend.position = "none")+
+  theme(panel.background = element_blank(),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+
+
+
+
+![El box plot indica que los paises sobre el promedio en PIB per Capita, tiene una dispersion minima mas alta. Se requiere connfirmacion con desviacion estandar](Rplot.png){witdh=80%}
+
+
+ggplot(orangeec, aes(`Internet penetration % population`, `Creat Ind % GDP`))+
+  geom_point(aes(color=factor(Strong_economy), size= `GDP Growth %`))+
+  labs(x='Penetración Internet', y='Aporte economía naranja PIB',
+       title='Internet y aporte economía naranja según economía y crecimiento PIB')
+       
+![](Rplot02.png){witdh=1000%}
+
+
+
+Buscando correlaciones con pairs en dataset de orangeec
+
+```{r}
+cor(orangeec[,2:6],use="complete.obs")
+cor(orangeec[,5:10], use= "complete.obs")
+```
+
+
+
