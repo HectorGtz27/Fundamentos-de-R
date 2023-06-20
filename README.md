@@ -1,0 +1,3 @@
+# Fundamentos-de-R
+
+During the R Fundamentals course, I analyze the Mtcars dataset with the R language. The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models). I also  I analyzed the Orange Economy dataset with the R language. In this dataset there is information where cultural industries are mixed with support areas such as application or software development. I carried out the analysis of this dataset to be able to find, in which Latin American country would you open an office that has to do with technology. The dataset was created by Professor Sonia Ardilla
